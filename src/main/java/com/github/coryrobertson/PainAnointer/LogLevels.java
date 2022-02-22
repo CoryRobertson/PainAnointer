@@ -14,6 +14,7 @@ public enum LogLevels
 
     public String getText()
     {
+        Date date = new Date();
         String retn = "";
         switch(this)
         {
@@ -30,7 +31,7 @@ public enum LogLevels
                 retn += "[UNKNOWN LOG LEVEL]\t\t";
                 break;
         }
-        retn = "[" + date.toString() + "]" + retn;
+        retn = "[" + date + "]" + retn;
         return retn;
     }
 }

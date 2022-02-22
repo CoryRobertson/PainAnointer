@@ -20,31 +20,27 @@ public class Logger
      * @param s message to log
      * @param l Log level
      */
-    public static void log(String s, LogLevels l)
+    public static void log(String s, LogLevels l) throws IOException
     {
+        
         s = l.getText() + s;
         System.out.println(s);
         FileWriter fw;
         BufferedWriter bw;
         PrintWriter out;
-        try {
-            fw = new FileWriter("log.txt", true);
-            bw = new BufferedWriter(fw);
-            out = new PrintWriter(bw);
-            out.println(s);
-            out.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+
+        fw = new FileWriter("log.txt", true);
+        bw = new BufferedWriter(fw);
+        out = new PrintWriter(bw);
+        out.println(s);
+        out.close();
     }
 
     /**
      * logs a message to a file, as well as prints it to the console, also assumes LogLevels.LOG
      * @param s message to log
      */
-    public static void log(String s)
+    public static void log(String s) throws IOException
     {
         log(s, LogLevels.LOG);
     }
