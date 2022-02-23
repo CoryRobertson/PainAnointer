@@ -9,11 +9,12 @@ import com.github.kwhat.jnativehook.*;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
+
 public class Main implements NativeKeyListener
 {
     public static void main(String[] args) throws IOException
     {
-        Runtime run = Runtime.getRuntime();
+        //Runtime run = Runtime.getRuntime();
         Logger.log("Pain Anointer began running...", LogLevels.LOG);
         Logger.log("Press F1 to end the program.", LogLevels.LOG);
 
@@ -42,6 +43,7 @@ public class Main implements NativeKeyListener
         long current;
         long timeSelectedTime = 0;
         boolean timeSelected = false;
+        //noinspection InfiniteLoopStatement
         while(true)
         {
             current = System.currentTimeMillis(); // update current time
@@ -55,7 +57,7 @@ public class Main implements NativeKeyListener
             {
                 timeSelected = true;
                 timeSelectedTime = current + randRange(1 * 1000, 5 * 1000);
-                double calc = (current - timeSelectedTime)/1000;
+                double calc = (double)(current - timeSelectedTime)/1000;
                 Logger.log( calc+ "s till next effect");
 
             }
@@ -69,6 +71,7 @@ public class Main implements NativeKeyListener
                 Logger.log("Effect creation time!!!");
                 threads.add(RunEffectInNewThread(new TestEffect()));
                 timeSelected = false;
+                //TODO: add system to add 1-3 COMPATIBLE effects to the thread pool at the same time.
 
             }
 
@@ -87,7 +90,10 @@ public class Main implements NativeKeyListener
 
     public static Thread RunEffectInNewThread(Effect effect)
     {
-        Thread nt = new Thread(() -> {
+        Thread nt = new Thread(() ->
+        {
+            //code from effects gets run here
+            effect.init();
             effect.RunEffect();
         });
         nt.start();

@@ -95,4 +95,10 @@ public abstract class Effect
      * Instance variables like deltaTime and EffectStepCount can be used to make desired effects
      */
     public abstract void EffectStep();
+
+    /**
+     * Called once at the beginning of the effect, maybe useful for an effect that should only do something one time at the start
+     * Since this is run on a separate thread, this can even be delayed for example
+     */
+    public abstract void init();
 }

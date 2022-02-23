@@ -14,4 +14,9 @@ public class TestEffect extends Effect
     {
         System.out.println("This is a test effect step: " + this);
     }
+
+    @Override
+    public void init() {
+
+    }
 }

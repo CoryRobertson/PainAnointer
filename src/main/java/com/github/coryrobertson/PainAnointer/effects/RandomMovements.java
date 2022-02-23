@@ -67,4 +67,9 @@ public class RandomMovements extends Effect
         }
 
     }
+
+    @Override
+    public void init() {
+
+    }
 }
