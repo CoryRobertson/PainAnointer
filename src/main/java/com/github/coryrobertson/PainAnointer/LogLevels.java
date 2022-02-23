@@ -11,7 +11,6 @@ public enum LogLevels
 
     private static Date date = new Date();
 
-
     public String getText()
     {
         Date date = new Date();

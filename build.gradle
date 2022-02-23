@@ -4,16 +4,9 @@ plugins {
     id 'application'
 }
 
-
-
 application {
     mainClass = 'com.github.coryrobertson.PainAnointer.Main'
 }
-
-
-
-
-
 
 group 'com.github.coryrobertson'
 version '1.0-SNAPSHOT'
@@ -23,8 +16,10 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.github.kwhat:jnativehook:2.2.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
 }
 
 test {

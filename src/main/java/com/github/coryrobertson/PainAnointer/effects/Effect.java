@@ -2,6 +2,7 @@ package com.github.coryrobertson.PainAnointer.effects;
 
 import com.github.coryrobertson.PainAnointer.Logger;
 
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -37,7 +38,8 @@ public abstract class Effect
 
         while(currentTime < EffectEndTime) // run this while loop while the effect is supposed to be running
         {
-            deltaTime = (System.currentTimeMillis() - currentTime) / 1000;
+
+            deltaTime = (System.currentTimeMillis() - currentTime) / 1000; // calculates deltatime for commmands
             currentTime = System.currentTimeMillis();
             EffectStep();
             EffectStepCount++;
