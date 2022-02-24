@@ -14,6 +14,12 @@ public class Main implements NativeKeyListener
 {
     public static void main(String[] args) throws IOException
     {
+
+        Logger.setLevel(LogLevels.LOG);
+        Logger.log("This is a log message", LogLevels.LOG);
+        Logger.log("This is a warn message", LogLevels.WARN);
+        Logger.log("This is a error message", LogLevels.ERROR);
+
         //Runtime run = Runtime.getRuntime();
         Logger.log("Pain Anointer began running...", LogLevels.LOG);
         Logger.log("Press F1 to end the program.", LogLevels.LOG);
@@ -32,7 +38,8 @@ public class Main implements NativeKeyListener
         GlobalScreen.addNativeKeyListener(new Main());
 
 //        RandomMovements rm1 = new RandomMovements();
-//        rm1.EffectDuration = 1000;
+//        rm1.EffectDuration = 5000;
+//        rm1.RunEffect();
 //        RandomMovements rm2 = new RandomMovements();
 //        rm2.EffectDuration = 5000;
 
@@ -69,7 +76,7 @@ public class Main implements NativeKeyListener
             if(current == timeSelectedTime)
             {
                 Logger.log("Effect creation time!!!");
-                threads.add(RunEffectInNewThread(new TestEffect()));
+                //threads.add(RunEffectInNewThread(new TestEffect()));
                 timeSelected = false;
                 //TODO: add system to add 1-3 COMPATIBLE effects to the thread pool at the same time.
 

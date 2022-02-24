@@ -10,6 +10,8 @@ import java.io.PrintWriter;
  */
 public class Logger
 {
+    private static LogLevels level;
+
     public Logger()
     {
 
@@ -24,7 +26,11 @@ public class Logger
     {
         
         s = l.getText() + s;
-        System.out.println(s);
+        if(l.value() >= level.value())
+        {
+            System.out.println(s);
+        }
+
         FileWriter fw;
         BufferedWriter bw;
         PrintWriter out;
@@ -43,5 +49,35 @@ public class Logger
     public static void log(String s) throws IOException
     {
         log(s, LogLevels.LOG);
+    }
+
+    public static void setLevel(LogLevels l)
+    {
+        level = l;
+    }
+
+    public static LogLevels getLevel()
+    {
+        return level;
+    }
+
+    /**
+     * Returns a log level enum type depending on the value of n
+     *     ERROR(3)
+     *     WARN(2)
+     *     LOG(1)
+     *     NONE(4)
+     * @param n a selector to pick a log level
+     * @return a log level corresponding to the value of n
+     */
+    public static LogLevels getLogLevelEnum(int n)
+    {
+        LogLevels[] enums = LogLevels.class.getEnumConstants();
+        for (LogLevels anEnum : enums) {
+            if (anEnum.value() == n) {
+                return anEnum;
+            }
+        }
+        return null;
     }
 }

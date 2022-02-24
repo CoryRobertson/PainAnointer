@@ -5,15 +5,36 @@ import java.util.Date;
 public enum LogLevels
 {
 
-    ERROR, // used for actual scary errors, hopefully never have to use this
-    WARN, // used for small stuff like not knowing a specific state, but being able to recover
-    LOG; // used for logging basic messages
+    //if a log level is greater or equal to another, we show it
+    ERROR(3), // used for actual scary errors, hopefully never have to use this
+    WARN(2), // used for small stuff like not knowing a specific state, but being able to recover
+    LOG(1), // used for logging basic messages
+    NONE(4);
 
     private static Date date = new Date();
+    private final int level;
+
+    /**
+     * Constructor with a number for easy conditionals
+     * @param level a number corresponding to this log level
+     */
+    LogLevels(int level)
+    {
+        this.level = level;
+    }
+
+    /**
+     * gets the numerical value of the Log Level
+     * @return the numerical value corresponding to this enum
+     */
+    public int value()
+    {
+        return this.level;
+    }
 
     public String getText()
     {
-        Date date = new Date();
+        date = new Date();
         String retn = "";
         switch(this)
         {
