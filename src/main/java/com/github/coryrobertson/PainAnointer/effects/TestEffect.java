@@ -1,5 +1,8 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
+/**
+ * An effect class implemented enough to be tested
+ */
 public class TestEffect extends Effect
 {
 

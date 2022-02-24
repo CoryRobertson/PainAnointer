@@ -15,7 +15,7 @@ public class Main implements NativeKeyListener
     public static int maxEffectsCount = -1;
     public static int effectTotalCount;
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
 
         Logger.setLevel(LogLevels.LOG);
@@ -142,7 +142,7 @@ public class Main implements NativeKeyListener
         Thread nt = new Thread(() ->
         {
             //code from effects gets run here
-            effect.init();
+            //effect.init();
             effect.RunEffect();
         });
         nt.start();

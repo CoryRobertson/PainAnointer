@@ -10,11 +10,10 @@ import java.io.PrintWriter;
  */
 public class Logger
 {
-    private static LogLevels level;
+    private static LogLevels level = LogLevels.LOG;
 
     public Logger()
     {
-
     }
 
     /**

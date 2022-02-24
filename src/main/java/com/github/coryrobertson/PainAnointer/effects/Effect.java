@@ -2,8 +2,6 @@ package com.github.coryrobertson.PainAnointer.effects;
 
 import com.github.coryrobertson.PainAnointer.Logger;
 
-import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -11,12 +9,12 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class Effect
 {
-    double EffectStartTime;
-    double EffectEndTime;
-    String EffectName = "DEFAULTNAME";
+    private double EffectStartTime;
+    private double EffectEndTime;
+    public String EffectName = "DEFAULTNAME";
     public double EffectDuration = 1000;
-    double deltaTime = 0;
-    int EffectStepCount = 0;
+    protected double deltaTime = 0;
+    public int EffectStepCount = 0;
 
     public Effect()
     {
@@ -35,6 +33,7 @@ public abstract class Effect
         double currentTime = System.currentTimeMillis();
 
         effectStartMessage();
+        init();
 
         while(currentTime < EffectEndTime) // run this while loop while the effect is supposed to be running
         {
@@ -58,7 +57,7 @@ public abstract class Effect
     /**
      * The start message to log when the effect is beginning
      */
-    public void effectStartMessage()
+    private void effectStartMessage()
     {
         Logger.log(EffectName + " began with duration of " + EffectDuration + " milis.");
     }
@@ -66,7 +65,7 @@ public abstract class Effect
     /**
      * The end message to log when the effect is over
      */
-    public void effectEndMessage()
+    private void effectEndMessage()
     {
         Logger.log(EffectName + " ended with " + EffectStepCount + " steps.");
     }
@@ -77,7 +76,7 @@ public abstract class Effect
      * @param max inclusive
      * @return number between min and max
      */
-    public int randRange(int min, int max)
+    protected int randRange(int min, int max)
     {
         return ThreadLocalRandom.current().nextInt(min,max+1);
     }
@@ -86,11 +85,11 @@ public abstract class Effect
      * Called on a while loop often
      * Instance variables like deltaTime and EffectStepCount can be used to make desired effects
      */
-    public abstract void EffectStep();
+    protected abstract void EffectStep();
 
     /**
      * Called once at the beginning of the effect, maybe useful for an effect that should only do something one time at the start
      * Since this is run on a separate thread, this can even be delayed for example
      */
-    public abstract void init();
+    protected abstract void init();
 }
