@@ -4,6 +4,9 @@ import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 
+/**
+ * An effect object that randomly presses W, A, S, D at random intervals
+ */
 public class RandomMovements extends Effect
 {
     Robot robot;

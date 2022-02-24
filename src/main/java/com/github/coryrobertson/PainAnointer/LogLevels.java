@@ -2,6 +2,9 @@ package com.github.coryrobertson.PainAnointer;
 
 import java.util.Date;
 
+/**
+ * Enumeration for the various degrees of log levels, such as an error message vs a warning vs a log message
+ */
 public enum LogLevels
 {
 
@@ -11,7 +14,6 @@ public enum LogLevels
     LOG(1), // used for logging basic messages
     NONE(4);
 
-    private static Date date = new Date(); // not entirely sure i need to initialize this date, but im gonna leave it for a while
     private final int level; // this can be final
 
     /**
@@ -38,7 +40,7 @@ public enum LogLevels
      */
     public String getText()
     {
-        date = new Date();
+        Date date = new Date();
         String retn = "";
         switch(this)
         {

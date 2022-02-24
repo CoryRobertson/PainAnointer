@@ -1,7 +1,6 @@
 package com.github.coryrobertson.PainAnointer;
 
 import com.github.coryrobertson.PainAnointer.effects.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,11 +8,15 @@ import com.github.kwhat.jnativehook.*;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
-
+/**
+ * The main class that handles running the application
+ */
 public class Main implements NativeKeyListener
 {
     public static int maxEffectsCount = -1;
     public static int effectTotalCount;
+    public static double minDuration = 1;
+    public static double maxDuration = 5;
 
     public static void main(String[] args)
     {
@@ -48,7 +51,6 @@ public class Main implements NativeKeyListener
         boolean timeSelected = false;
         effectTotalCount = 0;
 
-        //noinspection InfiniteLoopStatement
         while(true)
         {
             current = System.currentTimeMillis(); // update current time
@@ -61,7 +63,7 @@ public class Main implements NativeKeyListener
             if(!timeSelected) // if we have not selected a time, we do so
             {
                 timeSelected = true;
-                timeSelectedTime = current + randRange(1 * 1000, 5 * 1000);
+                timeSelectedTime = current + randRange((int)(minDuration * 1000), (int)(maxDuration * 1000));
                 double calc = (double)(timeSelectedTime - current)/1000;
                 Logger.log( calc+ "s till next effect", LogLevels.LOG);
 

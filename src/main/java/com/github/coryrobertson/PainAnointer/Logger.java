@@ -20,6 +20,7 @@ public class Logger
      * logs a message to a file, as well as prints it to the console
      * @param s message to log
      * @param l Log level
+     * @return true upon successful log of a message to a file
      */
     public static boolean log(String s, LogLevels l)
     {
