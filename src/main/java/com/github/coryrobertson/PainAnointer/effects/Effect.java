@@ -60,11 +60,7 @@ public abstract class Effect
      */
     public void effectStartMessage()
     {
-        try {
-            Logger.log(EffectName + " began with duration of " + EffectDuration + " milis.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Logger.log(EffectName + " began with duration of " + EffectDuration + " milis.");
     }
 
     /**
@@ -72,11 +68,7 @@ public abstract class Effect
      */
     public void effectEndMessage()
     {
-        try {
-            Logger.log(EffectName + " ended with " + EffectStepCount + " steps.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Logger.log(EffectName + " ended with " + EffectStepCount + " steps.");
     }
 
     /**

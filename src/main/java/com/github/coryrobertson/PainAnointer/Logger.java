@@ -22,7 +22,7 @@ public class Logger
      * @param s message to log
      * @param l Log level
      */
-    public static void log(String s, LogLevels l) throws IOException
+    public static boolean log(String s, LogLevels l)
     {
         
         s = l.getText() + s;
@@ -35,27 +35,41 @@ public class Logger
         BufferedWriter bw;
         PrintWriter out;
 
-        fw = new FileWriter("log.txt", true);
-        bw = new BufferedWriter(fw);
-        out = new PrintWriter(bw);
-        out.println(s);
-        out.close();
+        try {
+            fw = new FileWriter("log.txt", true);
+            bw = new BufferedWriter(fw);
+            out = new PrintWriter(bw);
+            out.println(s);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     /**
      * logs a message to a file, as well as prints it to the console, also assumes LogLevels.LOG
      * @param s message to log
      */
-    public static void log(String s) throws IOException
+    public static void log(String s)
     {
         log(s, LogLevels.LOG);
     }
 
+    /**
+     * Sets the log level for the entire program
+     * @param l the numerical value corresponding to the enum value
+     */
     public static void setLevel(LogLevels l)
     {
         level = l;
     }
 
+    /**
+     * Gets the current log level as an enum
+     * @return the current log level
+     */
     public static LogLevels getLevel()
     {
         return level;

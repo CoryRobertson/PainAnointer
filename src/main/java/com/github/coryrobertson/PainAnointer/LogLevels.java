@@ -11,8 +11,8 @@ public enum LogLevels
     LOG(1), // used for logging basic messages
     NONE(4);
 
-    private static Date date = new Date();
-    private final int level;
+    private static Date date = new Date(); // not entirely sure i need to initialize this date, but im gonna leave it for a while
+    private final int level; // this can be final
 
     /**
      * Constructor with a number for easy conditionals
@@ -32,6 +32,10 @@ public enum LogLevels
         return this.level;
     }
 
+    /**
+     * Gets a formatted string for the given log enum
+     * @return "[ERROR]" "[WARN]" "[LOG]" "[UNKNOWN LOG LEVEL]" are all possible strings
+     */
     public String getText()
     {
         date = new Date();
