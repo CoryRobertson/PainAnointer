@@ -11,11 +11,13 @@ class MainTest {
     void mainTest()
     {
         String[] args = {"-1"};
+        int effectsTestCount = 3;
         try {
-            Main.maxEffectsCount = 2;
+            Main.maxEffectsCount = effectsTestCount;
             Main.main(args);
             Assertions.assertTrue(true);
-        } catch (IOException e)
+            Assertions.assertEquals(effectsTestCount, Main.effectTotalCount);
+        } catch (Exception e)
         {
             e.printStackTrace();
             Assertions.fail();

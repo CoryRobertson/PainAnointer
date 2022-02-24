@@ -13,6 +13,7 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 public class Main implements NativeKeyListener
 {
     public static int maxEffectsCount = -1;
+    public static int effectTotalCount;
 
     public static void main(String[] args) throws IOException
     {
@@ -45,7 +46,7 @@ public class Main implements NativeKeyListener
         long current;
         long timeSelectedTime = 0;
         boolean timeSelected = false;
-        int effectTotalCount = 0;
+        effectTotalCount = 0;
 
         //noinspection InfiniteLoopStatement
         while(true)
