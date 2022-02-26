@@ -14,10 +14,14 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 public class Main implements NativeKeyListener
 {
 
-    public static int maxEffectsCount = -1;
-    public static int effectTotalCount;
-    public static double minDurationPick = 5;
-    public static double maxDurationPick = 8;
+    public static int maxEffectsCount = -1; // how many effects to run before the program auto closes, -1 for infinite only works in test mode cause main(args) = [0] = "-1"
+    public static int effectTotalCount; // the running count of how many effects have been generated
+    public static int minDurationPick = 5000; // minimum duration of wait time to pick a new effect in milis
+    public static int maxDurationPick = 8000; // maximum duration of wait time to pick a new effect in milis
+    public static int minDurationEffect = 1000; // minimum duration of effect in milis
+    public static int maxDurationEffect = 5000; // maximum duration of effect in milis
+
+    public static boolean pauseEffects = false;
 
     public static void main(String[] args)
     {
@@ -28,23 +32,11 @@ public class Main implements NativeKeyListener
         Logger.log("Pain Anointer began running...", LogLevels.LOG);
         Logger.log("Press F1 to end the program.", LogLevels.LOG);
 
-        try { // we wait one second after opening to give the user some time to tab into their desired game/program
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitTime(1000);
 
         globalHookKeyboard();
 
-//        RandomKeyboardMovements rm1 = new RandomKeyboardMovements();
-//        rm1.EffectDuration = 5000;
-//        rm1.RunEffect();
-//        RandomKeyboardMovements rm2 = new RandomKeyboardMovements();
-//        rm2.EffectDuration = 5000;
-
-        ArrayList<Thread> threads = new ArrayList<>();
-        //threads.add(RunEffectInNewThread(rm1));
-        //threads.add(RunEffectInNewThread(rm2));
+        ArrayList<Thread> threads = new ArrayList<>(); // thread arraylist just in case ;)
 
         //while loop variables
         long current;
@@ -54,6 +46,17 @@ public class Main implements NativeKeyListener
 
         while(true)
         {
+            while(pauseEffects) // this pause is super hacky and barely works, throws a ton of exceptions, basically can't make it work lmao, ill try later
+            {
+                for (Thread t: threads)
+                {
+                 t.interrupt(); // "whale they'er is ur problem!"
+                }
+                threads.clear();
+                waitTime(1000);
+                Logger.log("Pain Anointer paused, press F3 to unpause", LogLevels.LOG);
+            }
+
             current = System.currentTimeMillis(); // update current time
 
             if(current > timeSelectedTime) // if we are past current time, we need to select another time
@@ -64,7 +67,7 @@ public class Main implements NativeKeyListener
             if(!timeSelected) // if we have not selected a time, we do so
             {
                 timeSelected = true;
-                timeSelectedTime = current + randRange((int)(minDurationPick * 1000), (int)(maxDurationPick * 1000));
+                timeSelectedTime = current + randRange(minDurationPick,maxDurationPick);
                 double calc = (double)(timeSelectedTime - current)/1000;
                 Logger.log( calc+ "s till next effect", LogLevels.LOG);
 
@@ -76,25 +79,22 @@ public class Main implements NativeKeyListener
              */
             if(current == timeSelectedTime)
             {
-                Logger.log("Effect creation time!!!");
-                //threads.add(RunEffectInNewThread(new TestEffect()));
-                RandomKeyboardMovements rm1 = new RandomKeyboardMovements();
-                rm1.EffectDuration = 5000;
-                threads.add(RunEffectInNewThread(rm1));
+                //this is where we add new effects to the thread pool
+                Logger.log("Effect creation time!!!",LogLevels.LOG);
+                Effect eff = getRandomEffect();
+                eff.setEffectDurationRandom(minDurationEffect,maxDurationEffect);
+                threads.add(RunEffectInNewThread(eff));
                 timeSelected = false;
                 effectTotalCount++;
-                //TODO: currently all of this is dummy code until I decide on something I like
-                //TODO: add system to add 1-3 COMPATIBLE effects to the thread pool at the same time.
+
+                Logger.log("Total effects created this session: " + effectTotalCount, LogLevels.LOG);
 
                 if (checkArgs(args,0) == -1 && effectTotalCount >= maxEffectsCount) // special case for test class
                 {
                     break;
                 }
-
             }
-
-            // thread killer just in case anything is left behind, and we want to remove them, not sure if this is needed
-            for(int i = 0; i < threads.size(); i++)
+            for(int i = 0; i < threads.size(); i++) // thread killer just in case anything is left behind, and we want to remove them, not sure if this is needed
             {
                 if(!threads.get(i).isAlive())
                 {
@@ -104,7 +104,22 @@ public class Main implements NativeKeyListener
                 }
             }
         }
+    }
 
+    /**
+     * macro for waiting without having to make a try catch block cause typing those out annoy me
+     * @param milis time in milis to wait
+     */
+    private static void waitTime(int milis)
+    {
+        try
+        {
+            Thread.sleep(milis);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -166,6 +181,10 @@ public class Main implements NativeKeyListener
         {
             gracefulExit();
         }
+        if (e.getKeyCode() == NativeKeyEvent.VC_F3)
+        {
+            pauseEffects = !pauseEffects;
+        }
     }
 
     /**
@@ -194,12 +213,24 @@ public class Main implements NativeKeyListener
         return ThreadLocalRandom.current().nextInt(min,max+1);
     }
 
+    /**
+     * Returns a random effect object
+     * @return a random effect object
+     */
     public static Effect getRandomEffect()
     {
-        //TODO: implement this as well
-        //function here to pick an effect, such as a mouse interacting effect, or a keyboard interacting effect, or a screen interacting effect, or anything else
-        //this allows a user to say which types of effects might be enabled or not
-        return null;
+        int effectCount = 2; // RandomKeyboardMovements, RandomMouseMovements
+        EffectTypes[] effectTypes = {EffectTypes.MouseEffect, EffectTypes.KeyboardEffect};
+
+        switch(randRange(0,effectCount-1))
+        {
+            case 0:
+                return new RandomKeyboardMovements();
+            case 1:
+                return new RandomMouseMovements();
+        }
+
+        return null; // hopefully this doesn't happen!
     }
 
 }

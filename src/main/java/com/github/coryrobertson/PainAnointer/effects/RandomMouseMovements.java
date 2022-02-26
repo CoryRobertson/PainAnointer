@@ -10,8 +10,8 @@ public class RandomMouseMovements extends Effect
 {
 
     //public "option" instance variables for effect functionality
-    public double jitterMax = 10;
-    public double interval = 5;
+    public double jitterMax = 15;
+    public double interval = 500;
 
     //private instance variables for the effect functionality
     private Robot robot;
@@ -53,7 +53,6 @@ public class RandomMouseMovements extends Effect
         {
             e.printStackTrace();
         }
-        System.out.println(jitter);
 
         jitter = Math.abs(Math.sin((double)this.EffectStepCount/250)*jitterMax);
     }

@@ -10,12 +10,19 @@ class MainTest {
     {
         String[] args = {"-1"};
         int effectsTestCount = 3;
-        try {
+        try
+        {
             Main.maxEffectsCount = effectsTestCount;
+            Main.minDurationPick = 5000;
+            Main.maxDurationPick = 8000;
+            Main.minDurationEffect = 2000;
+            Main.maxDurationEffect = 5000;
+
             Main.main(args);
             Assertions.assertTrue(true);
             Assertions.assertEquals(effectsTestCount, Main.effectTotalCount);
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
             Assertions.fail();
@@ -42,6 +49,5 @@ class MainTest {
         Assertions.assertEquals(Main.checkArgs(args1,1),0);
         Assertions.assertEquals(Main.checkArgs(args2,1),0);
         Assertions.assertEquals(Main.checkArgs(args3,-1),0);
-
     }
 }

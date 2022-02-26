@@ -1,12 +1,13 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
 import com.github.coryrobertson.PainAnointer.EffectTypes;
+import com.github.coryrobertson.PainAnointer.LogLevels;
 import com.github.coryrobertson.PainAnointer.Logger;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * A parent class used to run code, very abstract
+ * A parent class used to run code, very abstract, self ending once the duration is up, no need to kill the object in any way
  */
 public abstract class Effect
 {
@@ -25,10 +26,7 @@ public abstract class Effect
     private double EffectStartTime;
     private double EffectEndTime;
 
-    public Effect()
-    {
-
-    }
+    public Effect() {}
 
     /**
      * Runs the effect with proper initialization and other things
@@ -88,6 +86,11 @@ public abstract class Effect
     protected int randRange(int min, int max)
     {
         return ThreadLocalRandom.current().nextInt(min,max+1);
+    }
+
+    public void setEffectDurationRandom(int min, int max)
+    {
+        EffectDuration = randRange(min,max);
     }
 
     /**
