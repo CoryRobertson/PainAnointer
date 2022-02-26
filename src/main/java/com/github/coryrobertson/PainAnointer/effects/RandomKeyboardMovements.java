@@ -1,5 +1,7 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
+import com.github.coryrobertson.PainAnointer.EffectTypes;
+
 import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.KeyEvent;
@@ -7,18 +9,18 @@ import java.awt.event.KeyEvent;
 /**
  * An effect object that randomly presses W, A, S, D at random intervals
  */
-public class RandomMovements extends Effect
+public class RandomKeyboardMovements extends Effect
 {
-    Robot robot;
-    final int max = 750;
+    private Robot robot;
+    final int maxHoldLength = 750;
 
-    public RandomMovements()
+    public RandomKeyboardMovements()
     {
         super();
-        EffectName = "Random Movements";
-        EffectDuration = 1000;
+        this.EffectName = "Random Keyboard Movements";
+        this.effectTypes = EffectTypes.KeyboardEffect;
 
-        try {
+        try { // robot init
             robot = new Robot();
         } catch (AWTException e) {
             e.printStackTrace();
@@ -34,7 +36,7 @@ public class RandomMovements extends Effect
             case 0:
                 robot.keyPress(KeyEvent.VK_W);
                 try {
-                    Thread.sleep(randRange(1,max));
+                    Thread.sleep(randRange(1, maxHoldLength));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -43,7 +45,7 @@ public class RandomMovements extends Effect
             case 1:
                 robot.keyPress(KeyEvent.VK_A);
                 try {
-                    Thread.sleep(randRange(1,max));
+                    Thread.sleep(randRange(1, maxHoldLength));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -52,7 +54,7 @@ public class RandomMovements extends Effect
             case 2:
                 robot.keyPress(KeyEvent.VK_S);
                 try {
-                    Thread.sleep(randRange(1,max));
+                    Thread.sleep(randRange(1, maxHoldLength));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -61,7 +63,7 @@ public class RandomMovements extends Effect
             case 3:
                 robot.keyPress(KeyEvent.VK_D);
                 try {
-                    Thread.sleep(randRange(1,max));
+                    Thread.sleep(randRange(1, maxHoldLength));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class TestEffectTest {
 
     @Test
-    void runEffect()
+    void runTestEffect()
     {
         TestEffect te = new TestEffect();
         te.EffectDuration = 1000;

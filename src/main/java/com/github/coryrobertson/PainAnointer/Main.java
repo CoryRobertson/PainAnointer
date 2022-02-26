@@ -13,10 +13,11 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
  */
 public class Main implements NativeKeyListener
 {
+
     public static int maxEffectsCount = -1;
     public static int effectTotalCount;
-    public static double minDuration = 1;
-    public static double maxDuration = 5;
+    public static double minDurationPick = 5;
+    public static double maxDurationPick = 8;
 
     public static void main(String[] args)
     {
@@ -35,10 +36,10 @@ public class Main implements NativeKeyListener
 
         globalHookKeyboard();
 
-//        RandomMovements rm1 = new RandomMovements();
+//        RandomKeyboardMovements rm1 = new RandomKeyboardMovements();
 //        rm1.EffectDuration = 5000;
 //        rm1.RunEffect();
-//        RandomMovements rm2 = new RandomMovements();
+//        RandomKeyboardMovements rm2 = new RandomKeyboardMovements();
 //        rm2.EffectDuration = 5000;
 
         ArrayList<Thread> threads = new ArrayList<>();
@@ -63,7 +64,7 @@ public class Main implements NativeKeyListener
             if(!timeSelected) // if we have not selected a time, we do so
             {
                 timeSelected = true;
-                timeSelectedTime = current + randRange((int)(minDuration * 1000), (int)(maxDuration * 1000));
+                timeSelectedTime = current + randRange((int)(minDurationPick * 1000), (int)(maxDurationPick * 1000));
                 double calc = (double)(timeSelectedTime - current)/1000;
                 Logger.log( calc+ "s till next effect", LogLevels.LOG);
 
@@ -77,8 +78,12 @@ public class Main implements NativeKeyListener
             {
                 Logger.log("Effect creation time!!!");
                 //threads.add(RunEffectInNewThread(new TestEffect()));
+                RandomKeyboardMovements rm1 = new RandomKeyboardMovements();
+                rm1.EffectDuration = 5000;
+                threads.add(RunEffectInNewThread(rm1));
                 timeSelected = false;
                 effectTotalCount++;
+                //TODO: currently all of this is dummy code until I decide on something I like
                 //TODO: add system to add 1-3 COMPATIBLE effects to the thread pool at the same time.
 
                 if (checkArgs(args,0) == -1 && effectTotalCount >= maxEffectsCount) // special case for test class
@@ -187,6 +192,14 @@ public class Main implements NativeKeyListener
     public static int randRange(int min, int max)
     {
         return ThreadLocalRandom.current().nextInt(min,max+1);
+    }
+
+    public static Effect getRandomEffect()
+    {
+        //TODO: implement this as well
+        //function here to pick an effect, such as a mouse interacting effect, or a keyboard interacting effect, or a screen interacting effect, or anything else
+        //this allows a user to say which types of effects might be enabled or not
+        return null;
     }
 
 }

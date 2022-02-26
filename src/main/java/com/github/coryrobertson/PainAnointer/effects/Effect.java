@@ -1,5 +1,6 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
+import com.github.coryrobertson.PainAnointer.EffectTypes;
 import com.github.coryrobertson.PainAnointer.Logger;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,12 +10,20 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class Effect
 {
-    private double EffectStartTime;
-    private double EffectEndTime;
+    // public "options" instance variables that might want to be modified
     public String EffectName = "DEFAULTNAME";
     public double EffectDuration = 1000;
-    protected double deltaTime = 0;
     public int EffectStepCount = 0;
+    public EffectTypes effectTypes = EffectTypes.TestEffect;
+
+    /**
+     * Useful time variable, calculates time in ms between the current step and previous
+     */
+    protected double deltaTime = 0;
+
+    //private time variables used to calculate time end and start
+    private double EffectStartTime;
+    private double EffectEndTime;
 
     public Effect()
     {
@@ -22,7 +31,7 @@ public abstract class Effect
     }
 
     /**
-     * runs the effect
+     * Runs the effect with proper initialization and other things
      * @return true if successfully run
      */
     public boolean RunEffect()
@@ -71,10 +80,10 @@ public abstract class Effect
     }
 
     /**
-     * returns a random int between min inclusive and max inclusive
+     * returns a random int between min inclusive and maxHoldLength inclusive
      * @param min inclusive
      * @param max inclusive
-     * @return number between min and max
+     * @return number between min and maxHoldLength
      */
     protected int randRange(int min, int max)
     {

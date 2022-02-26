@@ -86,7 +86,7 @@ public class Logger
      */
     public static LogLevels getLogLevelEnum(int n)
     {
-        LogLevels[] enums = LogLevels.class.getEnumConstants();
+        LogLevels[] enums = LogLevels.values();
         for (LogLevels anEnum : enums) {
             if (anEnum.value() == n) {
                 return anEnum;
