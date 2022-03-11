@@ -25,7 +25,6 @@ public class Main implements NativeKeyListener
 
     public static void main(String[] args)
     {
-
         Logger.setLevel(LogLevels.LOG);
 
         //Runtime run = Runtime.getRuntime();
@@ -220,7 +219,7 @@ public class Main implements NativeKeyListener
     public static Effect getRandomEffect()
     {
         int effectCount = 2; // RandomKeyboardMovements, RandomMouseMovements
-        EffectTypes[] effectTypes = {EffectTypes.MouseEffect, EffectTypes.KeyboardEffect};
+        EffectTypes[] effectTypes = {EffectTypes.MOUSE_EFFECT, EffectTypes.KEYBOARD_EFFECT, EffectTypes.SOUND_EFFECT};
 
         switch(randRange(0,effectCount-1))
         {

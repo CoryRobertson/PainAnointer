@@ -1,7 +1,6 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
 import com.github.coryrobertson.PainAnointer.EffectTypes;
-import com.github.coryrobertson.PainAnointer.LogLevels;
 import com.github.coryrobertson.PainAnointer.Logger;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,7 +14,7 @@ public abstract class Effect
     public String EffectName = "DEFAULTNAME";
     public double EffectDuration = 1000;
     public int EffectStepCount = 0;
-    public EffectTypes effectTypes = EffectTypes.TestEffect;
+    public EffectTypes effectTypes = EffectTypes.TEST_EFFECT;
 
     /**
      * Useful time variable, calculates time in ms between the current step and previous

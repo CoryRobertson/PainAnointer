@@ -7,9 +7,10 @@ package com.github.coryrobertson.PainAnointer;
 public enum EffectTypes
 {
 
-    KeyboardEffect,
-    MouseEffect,
-    TestEffect;
+    KEYBOARD_EFFECT,
+    MOUSE_EFFECT,
+    SOUND_EFFECT,
+    TEST_EFFECT;
 
     EffectTypes() {}
 
@@ -19,7 +20,7 @@ public enum EffectTypes
      */
     public EffectTypes getRandomType()
     {
-        EffectTypes[] effectTypes = {EffectTypes.KeyboardEffect, EffectTypes.MouseEffect};
+        EffectTypes[] effectTypes = {EffectTypes.KEYBOARD_EFFECT, EffectTypes.MOUSE_EFFECT,EffectTypes.SOUND_EFFECT};
 
         return effectTypes[Main.randRange(0,effectTypes.length - 1)];
     }
@@ -29,11 +30,13 @@ public enum EffectTypes
     {
         switch(this)
         {
-            case KeyboardEffect:
+            case KEYBOARD_EFFECT:
                 return "KeyboardEffect";
-            case MouseEffect:
+            case MOUSE_EFFECT:
                 return "MouseEffect";
-            case TestEffect:
+            case SOUND_EFFECT:
+                return "SoundEffect";
+            case TEST_EFFECT:
                 return "TestEffect";
         }
         return null;

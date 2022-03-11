@@ -18,7 +18,7 @@ public class RandomKeyboardMovements extends Effect
     {
         super();
         this.EffectName = "Random Keyboard Movements";
-        this.effectTypes = EffectTypes.KeyboardEffect;
+        this.effectTypes = EffectTypes.KEYBOARD_EFFECT;
 
         try { // robot init
             robot = new Robot();
