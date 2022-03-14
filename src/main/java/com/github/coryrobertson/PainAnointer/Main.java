@@ -218,8 +218,8 @@ public class Main implements NativeKeyListener
      */
     public static Effect getRandomEffect()
     {
-        int effectCount = 2; // RandomKeyboardMovements, RandomMouseMovements
-        EffectTypes[] effectTypes = {EffectTypes.MOUSE_EFFECT, EffectTypes.KEYBOARD_EFFECT, EffectTypes.SOUND_EFFECT};
+        final int effectCount = 3; // RandomKeyboardMovements, RandomMouseMovements, SoundEffect
+        final EffectTypes[] effectTypes = {EffectTypes.MOUSE_EFFECT, EffectTypes.KEYBOARD_EFFECT, EffectTypes.SOUND_EFFECT};
 
         switch(randRange(0,effectCount-1))
         {
@@ -227,6 +227,8 @@ public class Main implements NativeKeyListener
                 return new RandomKeyboardMovements();
             case 1:
                 return new RandomMouseMovements();
+            case 2:
+                return new SoundEffect();
         }
 
         return null; // hopefully this doesn't happen!

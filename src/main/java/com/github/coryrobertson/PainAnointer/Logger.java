@@ -52,9 +52,9 @@ public class Logger
      * logs a message to a file, as well as prints it to the console, also assumes LogLevels.LOG
      * @param s message to log
      */
-    public static void log(String s)
+    public static boolean log(String s)
     {
-        log(s, LogLevels.LOG);
+        return log(s, LogLevels.LOG);
     }
 
     /**

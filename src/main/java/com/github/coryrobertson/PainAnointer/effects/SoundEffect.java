@@ -1,4 +1,5 @@
 package com.github.coryrobertson.PainAnointer.effects;
+
 import com.github.coryrobertson.PainAnointer.EffectTypes;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
