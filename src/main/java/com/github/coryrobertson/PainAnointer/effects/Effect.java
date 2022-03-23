@@ -14,7 +14,7 @@ public abstract class Effect
     public String EffectName = "DEFAULTNAME";
     public double EffectDuration = 1000;
     public int EffectStepCount = 0;
-    public EffectTypes effectTypes = EffectTypes.TEST_EFFECT;
+    public EffectTypes effectType = EffectTypes.TEST_EFFECT;
 
     /**
      * Useful time variable, calculates time in ms between the current step and previous

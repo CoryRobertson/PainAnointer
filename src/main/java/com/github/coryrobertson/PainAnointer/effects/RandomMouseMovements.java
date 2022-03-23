@@ -25,7 +25,7 @@ public class RandomMouseMovements extends Effect
         super();
 
         this.EffectName = "Random Mouse Movements";
-        this.effectTypes  = EffectTypes.MOUSE_EFFECT;
+        this.effectType = EffectTypes.MOUSE_EFFECT;
 
         try // robot init
         {

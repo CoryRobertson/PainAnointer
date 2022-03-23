@@ -19,7 +19,7 @@ public class SoundEffect extends Effect
         super();
 
         this.EffectName = "Sound Effect";
-        this.effectTypes  = EffectTypes.SOUND_EFFECT;
+        this.effectType = EffectTypes.SOUND_EFFECT;
         this.EffectDuration = 1000;
 
     }
