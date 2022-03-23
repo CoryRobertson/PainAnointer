@@ -1,7 +1,7 @@
 package com.github.coryrobertson.PainAnointer.effects;
 
+import com.github.coryrobertson.Logger.Logger;
 import com.github.coryrobertson.PainAnointer.EffectTypes;
-import com.github.coryrobertson.PainAnointer.Logger;
 
 import java.util.concurrent.ThreadLocalRandom;
 
