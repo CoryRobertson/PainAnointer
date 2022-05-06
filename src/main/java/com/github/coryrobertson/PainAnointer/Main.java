@@ -29,7 +29,6 @@ public class Main implements NativeKeyListener
     {
         Logger.setLevel(LogLevels.LOG);
 
-        //Runtime run = Runtime.getRuntime();
         Logger.log("Pain Anointer began running...", LogLevels.LOG);
         Logger.log("Press F1 to end the program.", LogLevels.LOG);
 

@@ -15,7 +15,7 @@ class RandomMouseMovementsTest {
         int startY = mp.y;
 
         RandomMouseMovements rmm = new RandomMouseMovements();
-        rmm.EffectDuration = 125;
+        rmm.EffectDuration = 5000;
         Assertions.assertTrue(rmm.RunEffect());
 
         mp = MouseInfo.getPointerInfo().getLocation();

@@ -25,8 +25,6 @@ dependencies {
     implementation 'com.github.CoryRobertson:SimpleSaver:v1.3'
     implementation 'com.github.CoryRobertson:Logger:v1.0'
 
-
-
 }
 
 task fatJar(type: Jar) {
